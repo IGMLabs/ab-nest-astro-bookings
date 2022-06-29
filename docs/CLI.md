@@ -34,4 +34,12 @@ npm i helmet
 npm i @nestjs/throttler
 
 nest g guard agencies/api-key
+
+npm i @nestjs/passport passport
+npm i @nestjs/jwt passport-jwt
+npm i --save-dev @types/passport-jwt
+
+nest g module auth
+nest g controller auth
+nest g service auth
 ```
