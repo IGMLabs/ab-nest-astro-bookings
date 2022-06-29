@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { AgenciesService } from "./agencies.service";
+import { ApiKeyGuard } from "./api-key.guard";
 import { AgencyDto } from "./dto/agency.dto";
 import { Agency } from "./dto/agency.interface";
 
@@ -18,6 +19,7 @@ export class AgenciesController {
   }
 
   @Post()
+  @UseGuards(ApiKeyGuard)
   postAgency(
     @Body()
     agency: AgencyDto,

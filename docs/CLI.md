@@ -32,4 +32,6 @@ nest g service core/services/utils
 ```
 npm i helmet
 npm i @nestjs/throttler
+
+nest g guard agencies/api-key
 ```
