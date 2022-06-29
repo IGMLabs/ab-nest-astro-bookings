@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { AgenciesService } from "./agencies.service";
 import { AgencyDto } from "./dto/agency.dto";
 import { Agency } from "./dto/agency.interface";
@@ -19,12 +19,7 @@ export class AgenciesController {
 
   @Post()
   postAgency(
-    @Body(
-      new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-      }),
-    )
+    @Body()
     agency: AgencyDto,
   ): Agency {
     return this.agenciesService.insert(agency);

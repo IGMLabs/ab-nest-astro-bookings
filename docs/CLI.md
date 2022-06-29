@@ -13,6 +13,16 @@ nest g filter core/filters/BusinessError
 
 nest g middleware core/middlewares/monitor
 nest g module core
+```
 
+# 2 - Endpoint modules
+
+```
 npm i class-validator class-transformer
+
+nest g module agencies
+nest g controller agencies
+nest g service agencies
+
+nest g service core/services/utils
 ```
