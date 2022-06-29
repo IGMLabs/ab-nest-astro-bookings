@@ -45,3 +45,15 @@ nest g service auth
 
 nest g service auth/jwt-strategy
 ```
+
+# 4- Mongo
+
+```
+npm i mongoose @nestjs/mongoose
+```
+
+# 5 - Postgres
+
+```
+npm i @nestjs/typeorm typeorm pg
+```
