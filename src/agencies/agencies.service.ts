@@ -6,6 +6,10 @@ import { AgencyDto } from "./dto/agency.dto";
 import { Agency } from "./dto/agency.entity";
 import { UpdateAgencyDto } from "./dto/update-agency.dto";
 
+export class AgenciesRepository {
+  constructor(@InjectModel(Agency.name) private readonly agencyModel: Model<Agency>) {}
+}
+
 @Injectable()
 export class AgenciesService {
   constructor(
