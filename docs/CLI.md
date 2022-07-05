@@ -57,4 +57,6 @@ nest g filter core/filters/mongodb-error
 
 ```
 npm i @nestjs/typeorm typeorm pg
+nest g resource trips
+nest g resource bookings
 ```
