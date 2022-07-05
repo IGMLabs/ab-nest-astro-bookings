@@ -12,3 +12,16 @@ export class CreateBookingDto {
   @IsNumber()
   passengers?: number;
 }
+
+export class CreatePaymentDto {
+  @IsString()
+  @IsNotEmpty()
+  bookingId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  card: string;
+
+  @IsNumber()
+  amount: number;
+}

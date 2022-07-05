@@ -1,21 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus, Logger } from "@nestjs/common";
-import { Request, Response } from "express";
-
-export class ExpressFilter {
-  protected request!: Request;
-  protected response!: Response;
-  protected extractExpressData(host: ArgumentsHost) {
-    // ! http specific
-    const httpContext = host.switchToHttp();
-    // ! express specific
-    this.response = httpContext.getResponse<Response>();
-    this.request = httpContext.getRequest<Request>();
-  }
-  protected sendResponseError(responseError: ResponseError, logger: Logger) {
-    logger.error(responseError);
-    this.response.status(responseError.statusCode).json(responseError);
-  }
-}
+import { ExpressFilter } from "./express.filter";
+import { ResponseError } from "./response-error.interface";
 
 @Catch()
 export class BusinessErrorFilter<Error> extends ExpressFilter implements ExceptionFilter {
@@ -35,10 +20,4 @@ export class BusinessErrorFilter<Error> extends ExpressFilter implements Excepti
     };
     return responseError;
   }
-}
-
-export interface ResponseError {
-  statusCode: number;
-  message: string;
-  path?: string;
 }
