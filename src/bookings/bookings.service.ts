@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UtilsService } from "src/core/utils/utils.service";
 import { Trip } from "src/trips/entities/trip.entity";
@@ -9,6 +9,7 @@ import { Booking } from "./entities/booking.entity";
 
 @Injectable()
 export class BookingsService {
+  private logger = new Logger("BookingsService");
   constructor(
     private utilsService: UtilsService,
     @InjectRepository(Booking) private bookingsRepository: Repository<Booking>,
@@ -29,6 +30,7 @@ export class BookingsService {
       await queryRunner.commitTransaction();
     } catch (dbError) {
       await queryRunner.rollbackTransaction();
+      this.logger.error(dbError);
       throw dbError;
     } finally {
       await queryRunner.release();
@@ -40,6 +42,7 @@ export class BookingsService {
     if (!trip) throw new EntityNotFoundError(Trip, createBookingDto.tripId);
     if (trip.places < createBookingDto.passengers) throw new Error("BUSINESS: Not enough places");
     trip.places -= createBookingDto.passengers;
+    trip.updatedAt = new Date();
     booking.id = this.utilsService.createGUID();
     booking.trip = trip;
   }
