@@ -4,4 +4,6 @@
 
 ## 1 Full stack practice
 
-- [ ] Provide endpoints for angular client
+- [ ] Provide functional endpoints for current angular client
+- [ ] Provide security with JWT
+- [ ] Clean up the code
